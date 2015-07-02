@@ -1,1 +1,4 @@
 Faker
+pytest
+mock
+requests
