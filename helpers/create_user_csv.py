@@ -8,7 +8,7 @@ def decide_role(n, roles):
 
 def create_csv_file(path, number_of_users):
     f = Faker()
-    roles = ['Project Level User Role', 'Country Level User Role']
+    roles = ['ordinary user', 'admin user']
     default_password = "secretPassword"
     with open(path, "w") as file_handle:
         file_handle.write("First Name,Last Name,Username,Email Address,Role,Password\n")
