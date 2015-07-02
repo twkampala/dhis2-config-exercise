@@ -24,11 +24,11 @@ class UserMetaDataGenerator(object):
 
         return {"firstName": first_name,
                 "name": name,
+                "email": email,
                 "id": self.create_id(name),
-                "password": password,
                 "displayName": display_name,
                 "surname": last_name,
-                "userCredentials": {"username": username}}
+                "userCredentials": {"username": username, "password": password, "disabled": False}}
 
     def build_user_list(self):
         return map(self.build_single_user, self.get_data_rows())

@@ -13,5 +13,4 @@ class UserMetaDataGeneratorTestCase(TestCase):
         self.assertEquals(users[0]["id"], "tb70de18777")
         self.assertEquals(users[0]["firstName"], "Erin")
         self.assertEquals(users[0]["surname"], "Prohaska")
-        self.assertEquals(users[0]["password"], "secret")
-        self.assertEquals(users[0]["userCredentials"], {"username": "eprohaska"})
+        self.assertEquals(users[0]["userCredentials"], {"username": "eprohaska", "password": "secret", "disabled": False})
