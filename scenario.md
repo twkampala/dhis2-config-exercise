@@ -1,4 +1,4 @@
-
+<del>
 * Create 2 users at the project level who have the following access --done
 	* See Dashboard integration module
 	* See Data Administration module
@@ -9,8 +9,8 @@
 	* See Pivot Table module
 	* See Report module
 	* Sql View Management
-
-<del> * Create a user at the country level with all access <del/> 
+* Create a user at the country level with all access
+</del>
 
 * Setup a data set with the following 
 	* 2 data set sections
