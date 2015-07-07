@@ -2,24 +2,28 @@ import hashlib
 import requests
 import json
 from requests.auth import HTTPBasicAuth
+from setup_users import UserMetaDataGenerator
 
 class DataSetMetaDataGenerator(object):
 
-    def __init__(self,url,username,password):
+    def __init__(self,url,username,password, user_data_generator):
         self.url = url
         self.username = username
         self.password = password
+        self.user_data_generator = user_data_generator
 
 
     def create_id(self, value):
         return ("t%s" % hashlib.md5(value).hexdigest())[0:11]
 
     def create_dataset(self):
+        country_level_org_units, project_org_units = self.user_data_generator.org_units()
         dataset_name = 'Some very important dataset' 
         dataset = {
             'name': dataset_name,
             'id': self.create_id(dataset_name),
             'periodType':'Weekly',
+            'organisationUnits': project_org_units
         }
         return [dataset]
     
@@ -42,12 +46,13 @@ class DataSetMetaDataGenerator(object):
         section_info = [{'name':'first section', 'elements': first_section_data_elements }, 
                         {'name':'second section', 'elements': second_section_data_elements}]
         sections = []
-        for item in section_info:
+        for index, item in enumerate(section_info):
             name = item['name']
             sections.append({
                 'name':name,
                 'id':self.create_id(name),
                 'displayName': name,
+                'sortOrder': index + 1,
                 'dataSet': {'id': dataset_id},
                 'dataElements': item['elements']
             })
@@ -74,7 +79,8 @@ def main():
     url = 'http://localhost:8080'
     username = 'admin'
     password = 'district'
-    datasetgenerator = DataSetMetaDataGenerator(url,username,password)
+    user_data_generator = UserMetaDataGenerator('users.csv', url,username,password)
+    datasetgenerator = DataSetMetaDataGenerator(url, username, password, user_data_generator)
     datasetgenerator.run()
 
 if __name__ == '__main__':
