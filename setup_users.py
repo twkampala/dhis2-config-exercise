@@ -83,7 +83,7 @@ class UserMetaDataGenerator(object):
 
 
 def main():
-    generator = UserMetaDataGenerator("users.csv", "http://dhis.dev:8080", "admin", "district")
+    generator = UserMetaDataGenerator("users.csv", "http://localhost:8080", "admin", "district")
     generator.run()
 
 
